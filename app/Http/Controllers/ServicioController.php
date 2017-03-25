@@ -12,6 +12,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Models\Dato;
+use App\Models\Empleado;
+use DateTime;
 
 /**
  * Procesos que se le pueden aplicar a los empleados
@@ -24,6 +28,25 @@ use Illuminate\Http\Request;
  */
 class ServicioController extends Controller
 {
+
+    /**
+     * Mensajes de error para las validaciones
+     *
+     * @return array
+     */
+    public function mensajes()
+    {
+        return [
+            'nombre.required'=>'Nombre es requerido',
+            'apellido_paterno.required'=>'Apellido Paterno es requerido',
+            'apellido_materno.required'=>'Apellido Materno es requerido',
+            'fecha_nacimiento.required'=>'Fecha de Nacimiento es requerido',
+            'fecha_nacimiento.date_format'=>'Fecha de Nacimiento debe tener el formato dd/mm/yyyy',
+            'ingresos.required'=>'Ingresos es requerido',
+            'ingresos.numeric'=>'Ingresos debe ser numerico'
+        ];
+    }
+
     /**
      * Muestra a todos los empleados
      *
@@ -53,7 +76,40 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $parametros= $request->all();
+        $validar= Validator::make(
+            $parametros,
+            [
+              'nombre'=>'required',
+              'apellido_paterno'=>'required',
+              'apellido_materno'=>'required',
+              'fecha_nacimiento'=>'required|date_format:"d/m/Y"',
+              'ingresos'=>'required|numeric'
+            ],
+            $this->mensajes()
+        );
+        if ($validar->fails()) {
+            return Response(
+                [
+                'valido'=>false,
+                'errores'=>$validar->errors()->getMessages()
+                ]
+            );
+        } else {
+            $parametros['fecha_nacimiento']=DateTime::createFromFormat(
+                'd/m/Y',
+                $parametros['fecha_nacimiento']
+            )->format('Y-m-d');
+            $empleado= Empleado::create($request->all());
+            $dato= Dato::create($parametros+['empleados_id'=>$empleado->id]);
+            return Response(
+                [
+                'valido'=>true,
+                'empleado'=>$empleado->getAttributes(),
+                'dato'=>$dato->getAttributes()
+                ]
+            );
+        }
     }
 
     /**
