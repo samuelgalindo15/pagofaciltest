@@ -117,11 +117,21 @@ class ServicioController extends Controller
      *
      * @param string $dato Datos enviados
      *
-     * @return void
+     * @return Response Datos del empleado
      */
     public function show($dato)
     {
-        //
+        if (is_numeric($dato)) {
+            $empleados= Empleado::with('datos')->find($dato);
+            return Response($empleados);
+        } else {
+            $empleados= Empleado::with('datos')->where(
+                'nombre',
+                'LIKE',
+                '%'.$dato.'%'
+            )->get();
+            return Response($empleados);
+        }
     }
 
     /**

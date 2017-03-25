@@ -48,6 +48,6 @@ class Empleado extends Model
      */
     public function datos()
     {
-        return $this->hasOne('App\Models\Dato');
+        return $this->hasOne('App\Models\Dato', 'empleados_id');
     }
 }
