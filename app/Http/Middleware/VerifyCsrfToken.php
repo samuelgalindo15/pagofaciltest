@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 class VerifyCsrfToken extends BaseVerifier
 {
     /**
-     * The URIs that should be excluded from CSRF verification.
+     * Los URIs que deben ser excluidos de la verificación CSRF
      *
      * @var array
      */

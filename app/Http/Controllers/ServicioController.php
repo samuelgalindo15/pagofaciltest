@@ -1,15 +1,33 @@
 <?php
-
+/**
+ * ServicioController.php
+ * PHP Version 7
+ *
+ * @category Controllers
+ * @package  Http
+ * @author   Samuel Galindo Rodríguez <original_magus@hotmail.com>
+ * @license  https://github.com/samuelgalindo15/pagofaciltest/blob/master/LICENSE.txt Licence
+ * @link     https://github.com/samuelgalindo15/pagofaciltest
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * Procesos que se le pueden aplicar a los empleados
+ *
+ * @category Controllers
+ * @package  Http
+ * @author   Samuel Galindo Rodríguez <original_magus@hotmail.com>
+ * @license  https://github.com/samuelgalindo15/pagofaciltest/blob/master/LICENSE.txt Licence
+ * @link     https://github.com/samuelgalindo15/pagofaciltest
+ */
 class ServicioController extends Controller
 {
     /**
      * Muestra a todos los empleados
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function index()
     {
@@ -19,7 +37,7 @@ class ServicioController extends Controller
     /**
      * Muestra el formulario para crear al nuevo empleado
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -29,8 +47,9 @@ class ServicioController extends Controller
     /**
      * Guarda al nuevo empleado
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request Datos enviados
+     *
+     * @return Response Status del proceso
      */
     public function store(Request $request)
     {
@@ -40,8 +59,9 @@ class ServicioController extends Controller
     /**
      * Muestra los datos de un empleado en específico
      *
-     * @param  string  $dato
-     * @return \Illuminate\Http\Response
+     * @param string $dato Datos enviados
+     *
+     * @return void
      */
     public function show($dato)
     {
@@ -51,8 +71,9 @@ class ServicioController extends Controller
     /**
      * Muestra el formulario para editar al empleado
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id Identificador del empleado
+     *
+     * @return void
      */
     public function edit($id)
     {
@@ -62,9 +83,10 @@ class ServicioController extends Controller
     /**
      * Actualiza a un empleado en específico
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request Datos enviados
+     * @param int     $id      Identificador del empleado
+     *
+     * @return Response Status del proceso
      */
     public function update(Request $request, $id)
     {
@@ -74,8 +96,9 @@ class ServicioController extends Controller
     /**
      * Elimina a un empleado en específico
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id Identificador del empleado
+     *
+     * @return Response Status del proceso
      */
     public function destroy($id)
     {
