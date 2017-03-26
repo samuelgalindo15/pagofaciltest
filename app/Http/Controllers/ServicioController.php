@@ -54,7 +54,8 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        //
+        $empleados= Empleado::with('datos')->paginate(5);
+        return view('servicios.index', ['empleados'=>$empleados]);
     }
 
     /**
