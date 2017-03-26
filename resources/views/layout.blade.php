@@ -9,6 +9,7 @@
         {!! Html::style('css/bootstrap-theme.min.css') !!}
         {!! Html::script('js/jquery.min.js')!!}
         {!! Html::script('js/bootstrap.min.js')!!}
+        {!! Html::script('js/servicios.js')!!}
     </head>
     <body>
         <div class="container">

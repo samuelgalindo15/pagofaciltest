@@ -2,7 +2,10 @@
 
 @section('content')
   <h2>Creación de Empleados</h2>
-  {!! Form::open(['url' => '#']) !!}
+  <div role="alert" style="display:none" id="mensajes">
+
+  </div>
+  {!! Form::open(['url' => '', 'id'=>'servicio']) !!}
     <div class="form-group">
       {!! Form::label('nombre', 'Nombre') !!}
       {!! Form::text('nombre', null, ['id'=>'nombre', 'class'=>'form-control', 'placeholder'=>'Nombre']) !!}
@@ -13,7 +16,7 @@
     </div>
     <div class="form-group">
       {!! Form::label('apellidoM', 'Apellido Materno') !!}
-      {!! Form::text('apellido_paterno', null, ['id'=>'apellido_materno', 'class'=>'form-control', 'placeholder'=>'Apellido Materno']) !!}
+      {!! Form::text('apellido_materno', null, ['id'=>'apellido_materno', 'class'=>'form-control', 'placeholder'=>'Apellido Materno']) !!}
     </div>
     <div class="form-group">
       {!! Form::label('fechana', 'Fecha Nacimiento') !!}
